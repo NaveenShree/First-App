@@ -1,0 +1,61 @@
+<UI>:
+    canvas.before:
+        Color:
+            rgba:80/255,80/255,80/255,255/255
+        Rectangle:
+            pos:self.pos
+            size:self.size
+    Screen:
+        name:"main"
+        FloatLayout:
+            MDTopAppBar:
+                title:"Calculator"
+                pos_hint:{"top":1}
+                md_bg_color:80/255,80/255,80/255,255/255
+                right_action_items:[["clock-outline",lambda x:root.histry(root)],["dots-vertical",lambda x:root.drpdwn(x)]]
+            BoxLayout:
+                size_hint_y:.2
+                pos_hint:{"center_y":.8}
+                RelativeLayout:
+                    TextInput:
+                        id:clcltns
+                        font_size:"30dp"
+                        background_color:80/255,80/255,80/255,255/255
+                        foreground_color:1,1,1,1
+                        cursor_color:0,0,0,1
+                    Label:
+                        id:ans
+                        font_size:"25dp"
+                        pos_hint:{"center_x":.85,"center_y":.25}
+                        
+            BoxLayout:
+                id:btn
+                size_hint_y:.7
+                GridLayout:
+                    id:grd_btn
+                    spacing:"5dp"
+                    padding:"4dp"
+                    cols:4
+                    rows:5
+    Screen:
+        name:"history"
+        FloatLayout:
+            BoxLayout:
+                size_hint_y:.2
+                pos_hint:{"top":1}
+                MDTopAppBar:
+                    title:"Calculator"
+                    pos_hint:{"top":1}
+                    md_bg_color:80/255,80/255,80/255,255/255
+                    left_action_items:[["arrow-left-thick",lambda x:root.main_scrn(root)]]
+            BoxLayout:#root.main_scrn(root)
+                ScrollView:
+                    pos_hint:{"center_y":.5,"center_x":.5}
+                    Label:
+                        id:hst
+                        text:root.prvs
+                        pos_hint:"45dp"
+                        size_hint_y:1
+                        height:self.texture_size[1]
+                        text_size:self.width,None
+        
